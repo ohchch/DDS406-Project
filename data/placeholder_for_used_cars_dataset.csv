@@ -1,0 +1,9 @@
+make,model,year,mileage,fuel_type,transmission,selling_price
+Toyota,Camry,2018,50000,Petrol,Automatic,18000
+Honda,Civic,2019,30000,Petrol,Manual,16000
+Ford,Fusion,2017,70000,Petrol,Automatic,12000
+BMW,3 Series,2020,20000,Diesel,Automatic,35000
+Toyota,Corolla,2018,45000,Petrol,Manual,15000
+Mercedes,C-Class,2021,15000,Diesel,Automatic,45000
+Honda,CRV,2019,35000,Petrol,Automatic,20000
+Ford,F-150,2016,80000,Petrol,Automatic,25000

@@ -1,0 +1,55 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "DDS406_PROJECT", // 在VS Code/Cursor中显示的容器名称
+  // 指向您的 Dockerfile。
+  // "dockerFile" 指定了 Dockerfile 的路径，这里是相对 .devcontainer 文件夹的路径。
+  // "context" 指定了 Docker 构建的上下文路径，通常是项目根目录（.. 代表上一级目录）。
+  "dockerFile": "../Dockerfile",
+  "context": "..",
+  // 如果您的 Dockerfile 没有明确指定用户，通常以 root 身份运行容器会更简单。
+  // 如果您的 Dockerfile 使用了特定的用户（如 USER user），则可以注释掉这行或指定该用户。
+  "remoteUser": "root",
+  // 配置VS Code/Cursor特有的属性。
+  "customizations": {
+    "vscode": {
+      // 在容器中安装的VS Code扩展。
+      // 这些是您进行Python开发和Jupyter Notebook工作时常用的扩展。
+      "extensions": [
+        "ms-python.python", // Python 核心扩展
+        "ms-toolsai.jupyter", // Jupyter Notebook 支持
+        "ms-python.vscode-pylance", // Pylance，提供更强大的智能提示和类型检查
+        "dsebastien.vscode-containers-pack" // 容器扩展
+        // 您可以根据需要添加其他扩展，例如 "esbenp.prettier-vscode" 等
+      ],
+      // VS Code工作区设置。
+      "settings": {
+        "python.pythonPath": "/usr/local/bin/python", // 容器内Python解释器的路径
+        "python.linting.pylintEnabled": true, // 启用 Pylint 代码检查
+        "python.formatting.autopep8Enabled": true, // 启用 Autopep8 自动格式化
+        "editor.formatOnSave": true // 保存时自动格式化代码
+          // ...其他您希望在容器中应用的VS Code设置
+      }
+    }
+  },
+  // 需要从容器转发到主机的端口。
+  // 如果您使用Jupyter Notebook，通常需要转发8888端口。
+  "forwardPorts": [
+    8888
+  ],
+  // 容器创建后执行的命令。
+  // 注意：如果您的 Dockerfile 已经包含了 `pip install -r requirements.txt`，
+  // 那么这里通常不需要重复执行，因为依赖在镜像构建时就已经安装了。
+  // 但是，如果您想在每次容器启动时执行一些额外的设置或命令，可以放在这里。
+  // 例如：
+  // "postCreateCommand": "echo 'Container created and ready!'",
+  // 或者如果您的项目需要额外的初始化脚本：
+  // "postCreateCommand": "bash ./scripts/init.sh",
+  // 如果您希望容器启动时自动运行某个服务（比如 Jupyter），可以配置 `appPort`。
+  "appPort": 8888
+  // 也可以指定容器启动后的默认命令，如果您的 Dockerfile 没有 CMD 指令的话。
+  // 但是您的 Dockerfile 已经有 CMD 指令（启动 Jupyter），所以这里通常不需要。
+  // "serviceAttach": {
+  //   "localPort": 8888,
+  //   "portAction": "openBrowser"
+  // }
+}
